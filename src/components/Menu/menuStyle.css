@@ -1,5 +1,5 @@
 .page-header-wrap {
-  background: #e74c3c;
+  background: #113255;
 }
 
 .navbar {
@@ -49,6 +49,7 @@
   left: 0;
   background: rgba(0, 0, 0, 0.5);
   transition: background 0.5s;
+  z-index: 1001;
 }
 
 .sidebar-itens {
@@ -86,7 +87,7 @@
 }
 
 .sidebar-itens a:hover {
-  color: #e74c3c;
+  color: #1e90ff;
 }
 
 .sidebar-itens a:hover::after {
@@ -95,7 +96,7 @@
   width: 10px;
   height: 10px;
   margin-left: 10px;
-  background: #e74c3c;
+  background: #1e90ff;
   border-radius: 5px;
 }
 
