@@ -18,8 +18,8 @@ export default () => {
   return (
     <div className="home-container">
       {topNews.map((news, index) => (
-        <div className="topNew-area">
-          <TopNews key={index} data={news} />
+        <div className="topNew-area" key={index} >
+          <TopNews data={news} />
         </div>
       ))}
     </div>

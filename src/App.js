@@ -5,6 +5,7 @@ import './appStyle.css'
 
 import Menu from './components/Menu'
 import HomeScreen from './pages/HomeScreen'
+import Category from './pages/Category'
 
 export default () => {
 
@@ -19,6 +20,9 @@ export default () => {
 
           <Route exact path="/">
             <HomeScreen />
+          </Route>
+          <Route path="/category/:type">
+            <Category />
           </Route>
 
         </Switch>

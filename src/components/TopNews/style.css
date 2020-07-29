@@ -6,8 +6,6 @@
 }
 
 .type-news {
-  width: 67px;
-  height: 23px;
   background: #FFF602;
   font-size: 15px;
   font-weight: bold;
@@ -16,6 +14,10 @@
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.type-news p {
+  padding: 5px;
 }
 
 .info-new-news {

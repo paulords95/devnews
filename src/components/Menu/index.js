@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom'
+
 import "./menuStyle.css";
 
 export default () => {
+
   const [activeMenu, setActiveMenu] = useState(false);
+  const [showStatusMenu, setShowStatusMenu] = useState('Brasil');
 
   const handleActive = () => {
     setActiveMenu(true);
@@ -13,6 +17,20 @@ export default () => {
       setActiveMenu(false);
     }
   };
+
+  function showCategoryInMenu() {
+    const categoryItem = document.querySelectorAll('.js-itens-menu li a');
+
+    function getNameCat(event) {
+      const content = event.currentTarget.innerText;
+      setShowStatusMenu(content);
+    }
+
+    categoryItem.forEach((cat) => {
+      cat.addEventListener('click', getNameCat);
+    });
+  }
+  showCategoryInMenu();
 
   return (
     <header className="page-header">
@@ -27,7 +45,7 @@ export default () => {
             <img src="/assets/teste4.svg" alt="" />
           </div>
 
-          <h1 className="current-category">Brasil</h1>
+          <h1 className="current-category">{showStatusMenu}</h1>
         </nav>
       </div>
 
@@ -36,25 +54,25 @@ export default () => {
         onClick={handleCloseMenu}
       >
         <nav className={`sidebar-itens ${activeMenu ? "active" : ""}`}>
-          <ul>
+          <ul className="js-itens-menu">
             <li>
               <input type="text" placeholder="Buscar" />
             </li>
             <li className="separador"></li>
             <li>
-              <a href="#">Brasil</a>
+              <Link to="/">Brasil</Link>
             </li>
             <li>
-              <a href="#">Política</a>
+              <Link to="/category/politica">Política</Link>
             </li>
             <li>
-              <a href="#">Saúde</a>
+              <Link to="/category/saude">Saúde</Link>
             </li>
             <li>
-              <a href="#">Tecnologia</a>
+              <Link to="/category/tecnologia">Tecnologia</Link>
             </li>
             <li>
-              <a href="#">Esporte</a>
+              <Link to="/category/esporte">Esporte</Link>
             </li>
             <li className="separador"></li>
             <li>

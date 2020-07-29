@@ -7,7 +7,7 @@ import { format } from 'date-fns-tz';
 
 import './style.css'
 
-export default ({ data }) => {
+export default ({ data, typeCat }) => {
 
   const addedDate = parseISO(data.publishedAt);
 
@@ -16,7 +16,9 @@ export default ({ data }) => {
   return (
     <div className="tn-wrap">
       <img src={data.urlToImage} />
-      <div className="type-news">Brasil</div>
+      <div className="type-news">
+        <p>{typeCat ? typeCat : 'Brasil'}</p>
+      </div>
       <div className="info-new-news">
         <p className="content-news">{data.title}</p>
 
