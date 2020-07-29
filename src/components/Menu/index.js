@@ -1,23 +1,30 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 import "./menuStyle.css";
 
 export default () => {
 
+  const dispatch = useDispatch();
+
   const [activeMenu, setActiveMenu] = useState(false);
   const [showStatusMenu, setShowStatusMenu] = useState('Brasil');
+  const [onSearch, setOnSearch] = useState();
 
+  //Abre sidebar ao clicar no botão menu
   const handleActive = () => {
     setActiveMenu(true);
   };
 
+  //Fecha sidebar ao clicar no elemento menuBg
   const handleCloseMenu = (e) => {
     if (e.target.classList.contains("menuBg")) {
       setActiveMenu(false);
     }
   };
 
+  // Função responsavel por mostrar a categoria da noticia no menu
   function showCategoryInMenu() {
     const categoryItem = document.querySelectorAll('.js-itens-menu li a');
 
@@ -28,16 +35,37 @@ export default () => {
 
     categoryItem.forEach((cat) => {
       cat.addEventListener('click', getNameCat);
+      cat.addEventListener('click', () => {
+        setActiveMenu(false);
+      });
     });
   }
   showCategoryInMenu();
+
+  //Fecha Menu ao dar scroll
+  window.addEventListener('scroll', () => {
+    setActiveMenu(false);
+  });
+
+  // Search
+  const handleChange = (e) => {
+    setOnSearch(e.target.value);
+  }
+
+  const handleReducer = (search) => {
+    dispatch({
+      type: 'SEARCH_NEWS',
+      payload: { searchText: search }
+    })
+    // setActiveMenu(false);
+  }
 
   return (
     <header className="page-header">
       <div className="page-header-wrap">
         <nav className="navbar">
           <div className="navbar-button-menu" onClick={handleActive}>
-            <i className="material-icons">dehaze</i>
+            <i className="material-icons" >dehaze</i>
             <p>MENU</p>
           </div>
 
@@ -55,8 +83,12 @@ export default () => {
       >
         <nav className={`sidebar-itens ${activeMenu ? "active" : ""}`}>
           <ul className="js-itens-menu">
-            <li>
-              <input type="text" placeholder="Buscar" />
+            <li className="searchInput">
+              <input
+                type="text"
+                onChange={handleChange}
+              />
+              <button onClick={() => handleReducer(onSearch)}>Buscar</button>
             </li>
             <li className="separador"></li>
             <li>
@@ -73,13 +105,6 @@ export default () => {
             </li>
             <li>
               <Link to="/category/esporte">Esporte</Link>
-            </li>
-            <li className="separador"></li>
-            <li>
-              <a href="#">Cotação</a>
-            </li>
-            <li>
-              <a href="#">Previsão do tempo</a>
             </li>
           </ul>
         </nav>
