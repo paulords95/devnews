@@ -57,7 +57,7 @@ export default () => {
       type: 'SEARCH_NEWS',
       payload: { searchText: search }
     })
-    // setActiveMenu(false);
+    setActiveMenu(false);
   }
 
   return (

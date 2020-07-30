@@ -20,7 +20,7 @@ export default ({ data, typeCat }) => {
         <p>{typeCat ? typeCat : 'Brasil'}</p>
       </div>
       <div className="info-new-news">
-        <p className="content-news">{data.title}</p>
+        <a href={data.url} className="content-news">{data.title}</a>
 
         <div className="published-date">
           <time>
